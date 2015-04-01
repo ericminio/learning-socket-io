@@ -1,0 +1,24 @@
+{
+  "name": "learning-socket-io",
+  "version": "0.0.0",
+  "description": "To learn how to test-drive the use of socket.io data exchange",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine-node . --forceexit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ericminio/learning-socket-io.git"
+  },
+  "author": "ericminio",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ericminio/learning-socket-io/issues"
+  },
+  "homepage": "https://github.com/ericminio/learning-socket-io",
+  "devDependencies": {
+    "jasmine-node": "^1.14.5",
+    "socket.io": "^1.3.5",
+    "socket.io-client": "^1.3.5"
+  }
+}
