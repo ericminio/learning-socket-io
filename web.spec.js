@@ -1,8 +1,9 @@
+const { expect } = require('chai');
+
 describe('web-sockets', function () {
 
     var io;
     var app;
-    var server;
     var serverSocket;
 
     const Browser = require('zombie');
@@ -12,21 +13,22 @@ describe('web-sockets', function () {
 
         var handler = function (request, response) {
             response.setHeader('Content-Type', 'text/html');
-            var page = '<html>' +
-                '<body>' +
-                '<script src="/socket.io/socket.io.js"></script>' +
-                '<script>' +
-                'function connection() {' +
-                'var socket = io.connect("http://localhost:5000");' +
-                'socket.on("status", function (data) {' +
-                'document.getElementById("status").innerHTML = data;' +
-                '});' +
-                '};' +
-                '</script>' +
-                '<button id="connect" onmouseup="connection();">Go!</button>' +
-                '<label id="status">waiting...</label>' +
-                '</body>' +
-                '</html>';
+            var page = `
+            <html>
+                <body>
+                    <script src="/socket.io/socket.io.js"></script>
+                    <script>
+                        function connection() {
+                            var socket = io.connect("http://localhost:5000");
+                            socket.on("status", function (data) {
+                                document.getElementById("status").innerHTML = data;
+                            });
+                        };
+                    </script>
+                    <button id="connect" onmouseup="connection();">Go!</button>
+                    <label id="status">waiting...</label>
+                </body>
+            </html>`;
             response.write(page);
             response.end();
         };
@@ -56,12 +58,12 @@ describe('web-sockets', function () {
             })
             .then(function () {
                 setTimeout(function () {
-                    expect(browser.document.getElementById('status').innerHTML).toEqual('connected');
+                    expect(browser.document.getElementById('status').innerHTML).to.equal('connected');
                     done();
                 }, 100);
             })
             .then(function () { }, function (error) {
-                expect(error.message).toEqual(null);
+                expect(error.message).to.equal(null);
                 done();
             });
     });
